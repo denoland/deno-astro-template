@@ -13,6 +13,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
+
       # Use any of `npm ci`, `yarn install` or `pnpm i`
       - name: Install dependencies
         run: pnpm i

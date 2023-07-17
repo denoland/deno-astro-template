@@ -1,4 +1,7 @@
-# build output
+# Local Deno KV data
+.kv/
+
+# Astro build output
 dist/
 
 # generated types

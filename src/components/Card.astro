@@ -1,5 +1,5 @@
 ---
-interface Props {
+export interface Props {
 	title: string;
 	body: string;
 	href: string;
@@ -9,7 +9,8 @@ const { href, title, body } = Astro.props;
 ---
 
 <li class="link-card">
-	<a href={href}>
+	<span class="delete" data-title={title}>X</span>
+	<a href={href} class="" target="_blank">
 		<h2>
 			{title}
 			<span>&rarr;</span>
@@ -19,8 +20,32 @@ const { href, title, body } = Astro.props;
 		</p>
 	</a>
 </li>
+
+<script>
+	document.querySelectorAll('span.delete').forEach((span) => {
+		span.addEventListener('click', async (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+
+			const title = (span as HTMLElement).dataset.title || '';
+			const encTitle = encodeURIComponent(title);
+			const url = `/api/resources.json?title=${encTitle}`;
+			
+			try {
+				const res = await fetch(url, { method: 'DELETE' });
+				if (res.ok) {
+					span.parentElement?.remove();
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		});
+	});
+</script>
+
 <style>
 	.link-card {
+		position: relative;
 		list-style: none;
 		display: flex;
 		padding: 0.25rem;
@@ -52,6 +77,21 @@ const { href, title, body } = Astro.props;
 		margin-top: 0.5rem;
 		margin-bottom: 0;
 		color: #444;
+	}
+	span.delete {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		color: #999;
+		font-size: 0.8rem;
+		cursor: pointer;
+		border-radius: 4px;
+		border: 1px solid;
+		padding: 0.1rem 0.3rem;
+		z-index: 1;
+	}
+	span.delete:hover {
+		color: #666;
 	}
 	.link-card:is(:hover, :focus-within) {
 		background-position: 0;

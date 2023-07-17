@@ -1,0 +1,30 @@
+name: Deploy
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # Needed for auth with Deno Deploy
+      contents: read # Needed to clone the repository
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      # Use any of `npm ci`, `yarn install` or `pnpm i`
+      - name: Install dependencies
+        run: pnpm i
+
+      # Use any of `npm run build`, `yarn build` or `pnpm run build`
+      - name: Build Astro
+        run: pnpm run build
+
+      - name: Upload to Deno Deploy
+        uses: denoland/deployctl@v1
+        with:
+          # Replace with your Deno Deploy project name
+          project: deno-astro-template
+          entrypoint: server/entry.mjs
+          root: dist

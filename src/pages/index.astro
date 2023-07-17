@@ -1,36 +1,62 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { addResource, listResources, Resource } from "../data/resources";
+
+// Process form submission if required
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+		const resource: Resource = {
+			url: data.get("url")?.toString() || "",
+			title: data.get("title")?.toString() || "",
+			summary: data.get("summary")?.toString() || "",
+		};
+		await addResource(resource);
+  } catch (error) {
+		console.error(error);
+  }
+
+	// Redirect to home page to avoid duplicate form submissions
+	return Astro.redirect('/');
+}
+
+// Get a list of resources
+const resources: Resource[] = await listResources();
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Welcome to Deno 🦕">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
+		<h1>Welcome to <span class="text-gradient">Deno 🦕</span></h1>
+		<div class="news-form">
+			<p>
+				Welcome to Deno! Add your own links and resources using the form below.
+			</p>
+			<hr/>
+			<form method="POST">
+				<label for="url">URL</label>
+				<input type="url" name="url" id="url" required/>
+				<br/>
+
+				<label for="title">Title</label>
+				<input type="text" name="title" id="title" required/>
+				<br/>
+
+				<label for="summary">Summary</label>
+				<input type="text" name="summary" id="summary" required/>
+				<br/>
+
+				<button type="submit">Submit</button>
+			</form>
+		</div>
 		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
+			{resources.map((resource) => (
+				<Card
+					href={resource.url}
+					title={resource.title}
+					body={resource.summary}
+				/>
+			))}
 		</ul>
 	</main>
 </Layout>
@@ -46,6 +72,37 @@ import Card from '../components/Card.astro';
 		font-weight: 800;
 		margin: 0;
 	}
+	hr, p {
+		margin: 5px 0;
+	}
+	label {
+		font-size: 0.875rem;
+		font-style: italic;
+	}
+	input {
+		width: 100%;
+		padding: 5px;
+		margin: 0 0 5px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+	button {
+		cursor: pointer;
+		margin: 10px 0 0 0;
+		padding: 10px;
+		font-weight: bold;
+		color: #fff;
+		background-image: var(--accent-gradient);
+		background-size: 400%;
+		background-position: 0%;
+		border: none;
+		border-radius: 4px;
+	}
+	button:hover {
+		background-position: 10%;
+	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
 		-webkit-background-clip: text;
@@ -53,7 +110,7 @@ import Card from '../components/Card.astro';
 		background-size: 400%;
 		background-position: 0%;
 	}
-	.instructions {
+	.news-form {
 		line-height: 1.6;
 		margin: 1rem 0;
 		border: 1px solid rgba(var(--accent), 25%);
@@ -61,7 +118,7 @@ import Card from '../components/Card.astro';
 		padding: 1rem;
 		border-radius: 0.4rem;
 	}
-	.instructions code {
+	.news-form code {
 		font-size: 0.875em;
 		font-weight: bold;
 		background: rgba(var(--accent), 12%);
@@ -69,7 +126,7 @@ import Card from '../components/Card.astro';
 		border-radius: 4px;
 		padding: 0.3em 0.45em;
 	}
-	.instructions strong {
+	.news-form strong {
 		color: rgb(var(--accent));
 	}
 	.link-card-grid {
@@ -77,5 +134,6 @@ import Card from '../components/Card.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+		margin: 0;
 	}
 </style>

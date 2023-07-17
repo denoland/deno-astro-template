@@ -1,15 +1,20 @@
 {
   "name": "deno-astro-template",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "dev": "deno run -A --unstable npm:astro dev",
+    "start": "deno run -A --unstable npm:astro dev",
+    "build": "deno run -A --unstable npm:astro build",
+    "preview": "deno run -A --unstable ./dist/server/entry.mjs",
+    "astro": "deno run -A --unstable npm:astro",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@astrojs/deno": "^4.2.0",
     "astro": "^2.8.3"
+  },
+  "devDependencies": {
+    "patch-package": "^7.0.2"
   }
 }

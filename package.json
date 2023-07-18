@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@astrojs/deno": "^4.2.0",
-    "astro": "^2.8.3"
+    "astro": "^2.8.3",
+    "deno-astro-adapter": "^4.2.0"
   },
   "devDependencies": {
     "patch-package": "^7.0.2"

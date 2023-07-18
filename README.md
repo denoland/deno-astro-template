@@ -1,9 +1,9 @@
-# Astro + Deno Template
+# 🚀 Astro + 🦕 Deno Template
 
 This sample project contains a recommended starting point for your Deno project
 using Astro.
 
-## Using this template
+## 🛠️ Using this template
 
 This template requires the Deno runtime to be installed on your computer. If you
 haven't already, please
@@ -43,7 +43,7 @@ instead of Node.js.
 The template project lightly modifies the base Astro project with some basic
 CRUD operations to create additional resource links.
 
-## Managing dependencies, integrations, and plugins
+## 🔌 Managing dependencies, integrations, and plugins
 
 We recommend **using npm to manage dependencies for this project**. Astro was
 designed to be used with npm, and enhanced with plugins and other tools also
@@ -51,7 +51,7 @@ hosted on npm. Deno's Node/npm compatibility layer should be able to handle this
 just fine. If you run into any compatibility issues,
 [please let us know](https://github.com/denoland/deno/issues).
 
-## Using Deno KV
+## 🗝️ Using Deno KV
 
 By default, the template project stores data in memory in a
 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map).
@@ -65,7 +65,7 @@ to use `resources_kv.ts` instead of `resources.ts`. This will work for everyone
 locally on recent versions of Deno, but will only work on Deno Deploy if you
 have applied for and received access to the beta for KV.
 
-## Caveats and limitations
+## 🤔 Caveats and limitations
 
 The Astro build process still runs your Deno code through Vite and esbuild to
 generate your SSR site. This means that not all JavaScript and TypeScript
@@ -85,6 +85,6 @@ This template also uses a patched version of Astro's Deno SSR adapter in
 [this pull request is merged](https://github.com/withastro/astro/pull/7687) and
 `@astrojs/deno` is suitable for use!
 
-## License
+## 👩‍⚖️ License
 
 MIT

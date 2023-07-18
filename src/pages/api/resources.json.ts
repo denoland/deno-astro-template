@@ -1,4 +1,5 @@
 import { APIRoute } from "astro";
+// To use Deno KV, swiitch this import to "resources_kv" in the same directory
 import { deleteResource } from "../../data/resources.ts";
 
 export const del: APIRoute = async ({ request }) => {

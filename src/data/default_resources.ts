@@ -12,7 +12,7 @@ export default [
   {
     url: "https://deno.com/deploy",
     title: "Deno Deploy",
-    summary: "Global serverless infrastructure for Deno.",
+    summary: "Global serverless infrastructure for web applications.",
   },
   {
     url: "https://discord.gg/deno",

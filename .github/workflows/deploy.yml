@@ -19,7 +19,7 @@ jobs:
 
       # Use any of `npm ci`, `yarn install` or `pnpm i`
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # Use any of `npm run build`, `yarn build` or `pnpm run build`
       - name: Build Astro

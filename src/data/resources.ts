@@ -20,6 +20,11 @@ export function listResources(): Promise<Resource[]> {
   return new Promise((resolve, _reject) => {
     const resources = [];
     for (const res of RESOURCES.values()) resources.push(res);
+    resources.sort((a, b) => {
+      const textA = a.title.toUpperCase();
+      const textB = b.title.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
     return resolve(resources);
   });
 }

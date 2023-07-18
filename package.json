@@ -10,6 +10,7 @@
     "astro": "deno run -A --unstable npm:astro"
   },
   "dependencies": {
+    "@astrojs/deno": "^4.2.0",
     "astro": "^2.8.3",
     "deno-astro-adapter": "^4.2.0"
   }

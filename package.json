@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "deno run -A --unstable npm:astro dev",
     "start": "deno run -A --unstable npm:astro dev",
-    "build": "deno run -A --unstable npm:astro build",
+    "build": "astro build",
     "preview": "deno run -A --unstable ./dist/server/entry.mjs",
-    "astro": "deno run -A --unstable npm:astro"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/deno": "^4.2.0",

@@ -65,6 +65,55 @@ to use `resources_kv.ts` instead of `resources.ts`. This will work for everyone
 locally on recent versions of Deno, but will only work on Deno Deploy if you
 have applied for and received access to the beta for KV.
 
+## 🦕 🚀 Running on Deno Deploy
+
+When you're ready to put this application on the Internet, you can run it on
+[Deno Deploy](https://www.deno.com/deploy). You have two options for doing so.
+
+#### Deploy via GitHub Actions
+
+- Create a new project on the
+  [Deno Deploy Dashboard](https://dash.deno.com/projects)
+- Choose to "Deploy an existing GitHub repository"
+- Choose your GitHub user and the repository where you are storing this
+  application
+- You will be prompted to add a `.github/workflows/deploy.yml` file that will
+  automatically build and deploy your application on every push to the `main`
+  branch.
+
+The `yml` file's final build step should look like this:
+
+```yml
+- name: Upload to Deno Deploy
+  uses: denoland/deployctl@v1
+  with:
+    # Replace with your Deno Deploy project name
+    project: deno-astro-template
+    entrypoint: server/entry.mjs
+    root: dist
+```
+
+- The `project` property should be your new Deno Deploy project's name
+- The `entrypoint` for our Astro SSR application is `server/entry.mjs`
+- The `root` for our app is the `dist` folder
+
+Once this file is committed to your repo, every push to `main` will result in a
+new version of your application being pushed to production.
+
+#### Deploy from your desktop using `deployctl`
+
+- Install the command line tools for `deployctl` and configure an API token
+  environment variable
+  [as described here](https://deno.com/deploy/docs/deployctl).
+- Create a new blank project at [dash.deno.com](https://dash.deno.com/projects)
+  and note the generated project name
+- Build the Astro site locally with `npm run build`
+- Deploy the newly generated site in the `dist` folder with this command:
+
+```
+deployctl deploy --project=YOUR_PROJECT_NAME --no-static --include=./dist ./dist/server/entry.mjs
+```
+
 ## 🤔 Caveats and limitations
 
 The Astro build process still runs your Deno code through Vite and esbuild to

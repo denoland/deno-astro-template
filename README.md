@@ -8,7 +8,6 @@ using Astro.
 This template requires the Deno runtime to be installed on your computer. If you
 haven't already, please
 [install Deno first](https://deno.land/manual/getting_started/installation).
-
 Next, initialize a new Astro project using this template with your favorite
 [npm client](https://docs.npmjs.com/cli/v9/configuring-npm/install), as
 described in the [Astro docs](https://docs.astro.build/en/getting-started/).
@@ -16,6 +15,11 @@ described in the [Astro docs](https://docs.astro.build/en/getting-started/).
 ```
 npm create astro@latest -- --template denoland/deno-astro-template
 ```
+
+GitHub will also let you
+[use this repository as a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template) -
+use the green "Use this template" button near the top of the page to create your
+own copy of this application.
 
 #### Why use Astro with Deno?
 

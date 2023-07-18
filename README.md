@@ -14,7 +14,7 @@ Next, initialize a new Astro project using this template with your favorite
 described in the [Astro docs](https://docs.astro.build/en/getting-started/).
 
 ```
-npm create astro@latest -- --template kwhinnery/deno-astro-template
+npm create astro@latest -- --template denoland/deno-astro-template
 ```
 
 This template is preconfigured to use Deno rather than Node.js as the JavaScript

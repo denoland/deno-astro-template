@@ -17,6 +17,8 @@ described in the [Astro docs](https://docs.astro.build/en/getting-started/).
 npm create astro@latest -- --template denoland/deno-astro-template
 ```
 
+#### Why use Astro with Deno?
+
 This template is preconfigured to use Deno rather than Node.js as the JavaScript
 runtime for this
 [server-side rendering Astro application](https://docs.astro.build/en/guides/server-side-rendering/).
@@ -30,6 +32,8 @@ This provides a few benefits:
 - [Compatibility with the majority of packages on npm](https://deno.land/manual@v1.17.2/npm_nodejs/compatibility_mode),
   both at the runtime level and via the Astro build process (thanks to Vite and
   esbuild).
+
+#### Local development
 
 To use this template for local development, you will use npm scripts in
 `package.json` in the same way as described in the Astro documentation. However,

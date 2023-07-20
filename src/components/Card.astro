@@ -1,101 +1,98 @@
 ---
 export interface Props {
-	title: string;
-	body: string;
-	href: string;
+  title: string;
+  body: string;
+  href: string;
 }
 
 const { href, title, body } = Astro.props;
 ---
 
 <li class="link-card">
-	<span class="delete" data-title={title}>X</span>
-	<a href={href} class="" target="_blank">
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
+  <span class="delete" data-title={title}>X</span>
+  <a href={href} class="" target="_blank">
+    <h2>{title} <span>&rarr;</span></h2>
+    <p>
+      {body}
+    </p>
+  </a>
 </li>
 
 <script>
-	document.querySelectorAll('span.delete').forEach((span) => {
-		span.addEventListener('click', async (e) => {
-			e.preventDefault();
-			e.stopPropagation();
+document.querySelectorAll('span.delete').forEach((span) => {
+  span.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-			const title = (span as HTMLElement).dataset.title || '';
-			const encTitle = encodeURIComponent(title);
-			const url = `/api/resources.json?title=${encTitle}`;
-			
-			try {
-				const res = await fetch(url, { method: 'DELETE' });
-				if (res.ok) {
-					span.parentElement?.remove();
-				}
-			} catch (err) {
-				console.log(err);
-			}
-		});
-	});
+    const title = (span as HTMLElement).dataset.title || '';
+    const encTitle = encodeURIComponent(title);
+    const url = `/api/resources.json?title=${encTitle}`;
+
+    try {
+      const res = await fetch(url, { method: 'DELETE' });
+    if (res.ok) {
+      span.parentElement?.remove();
+    }
+    } catch (err) {
+      console.log(err);
+    }
+  });
+});
 </script>
 
 <style>
-	.link-card {
-		position: relative;
-		list-style: none;
-		display: flex;
-		padding: 0.25rem;
-		background-color: white;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 0.6rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-	}
+.link-card {
+  position: relative;
+  list-style: none;
+  display: flex;
+  padding: 0.25rem;
+  background-color: white;
+  background-image: none;
+  background-size: 400%;
+  border-radius: 0.6rem;
+  background-position: 100%;
+  transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
 
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1rem 1.3rem;
-		border-radius: 0.35rem;
-		color: #111;
-		background-color: white;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-		color: #444;
-	}
-	span.delete {
-		position: absolute;
-		top: 0.5rem;
-		right: 0.5rem;
-		color: #999;
-		font-size: 0.8rem;
-		cursor: pointer;
-		padding: 0.1rem 0.3rem;
-		z-index: 1;
-	}
-	span.delete:hover {
-		color: #666;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent));
-	}
+.link-card > a {
+  width: 100%;
+  text-decoration: none;
+  line-height: 1.4;
+  padding: 1rem 1.3rem;
+  border-radius: 0.35rem;
+  color: #111;
+  background-color: white;
+  opacity: 0.8;
+}
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: #444;
+}
+span.delete {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #999;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+  z-index: 1;
+}
+span.delete:hover {
+  color: #666;
+}
+.link-card:is(:hover, :focus-within) {
+  background-position: 0;
+  background-image: var(--accent-gradient);
+}
+.link-card:is(:hover, :focus-within) h2 {
+  color: rgb(var(--accent));
+}
 </style>

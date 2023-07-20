@@ -8,18 +8,18 @@ import { addResource, listResources, Resource } from "../data/resources";
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
-		const resource: Resource = {
-			url: data.get("url")?.toString() || "",
-			title: data.get("title")?.toString() || "",
-			summary: data.get("summary")?.toString() || "",
-		};
-		await addResource(resource);
+    const resource: Resource = {
+      url: data.get("url")?.toString() || "",
+      title: data.get("title")?.toString() || "",
+      summary: data.get("summary")?.toString() || "",
+    };
+    await addResource(resource);
   } catch (error) {
-		console.error(error);
+    console.error(error);
   }
 
-	// Redirect to home page to avoid duplicate form submissions
-	return Astro.redirect('/');
+  // Redirect to home page to avoid duplicate form submissions
+  return Astro.redirect('/');
 }
 
 // Get a list of resources
@@ -27,114 +27,114 @@ const resources: Resource[] = await listResources();
 ---
 
 <Layout title="Welcome to Deno 🦕">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Deno 🦕</span></h1>
-		<div class="news-form">
-			<p>
-				Welcome to Deno! Add your own links and resources using the form below.
-			</p>
-			<hr/>
-			<form method="POST">
-				<label for="url">URL</label>
-				<input type="url" name="url" id="url" required/>
-				<br/>
+  <main>
+    <h1>Welcome to <span class="text-gradient">Deno 🦕</span></h1>
+    <div class="news-form">
+      <p>
+      Welcome to Deno! Add your own links and resources using the form below.
+      </p>
+      <hr/>
+      <form method="POST">
+        <label for="url">URL</label>
+        <input type="url" name="url" id="url" required/>
+        <br/>
 
-				<label for="title">Title</label>
-				<input type="text" name="title" id="title" required/>
-				<br/>
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" required/>
+        <br/>
 
-				<label for="summary">Summary</label>
-				<input type="text" name="summary" id="summary" required/>
-				<br/>
+        <label for="summary">Summary</label>
+        <input type="text" name="summary" id="summary" required/>
+        <br/>
 
-				<button type="submit">Submit</button>
-			</form>
-		</div>
-		<ul role="list" class="link-card-grid">
-			{resources.map((resource) => (
-				<Card
-					href={resource.url}
-					title={resource.title}
-					body={resource.summary}
-				/>
-			))}
-		</ul>
-	</main>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <ul role="list" class="link-card-grid">
+      {resources.map((resource) => (
+        <Card
+          href={resource.url}
+          title={resource.title}
+          body={resource.summary}
+        />
+      ))}
+    </ul>
+  </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	hr, p {
-		margin: 5px 0;
-	}
-	label {
-		font-size: 0.875rem;
-		font-style: italic;
-	}
-	input {
-		width: 100%;
-		padding: 5px;
-		margin: 0 0 5px 0;
-		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-	button {
-		cursor: pointer;
-		margin: 10px 0 0 0;
-		padding: 10px;
-		font-weight: bold;
-		color: #fff;
-		background-image: var(--accent-gradient);
-		background-size: 400%;
-		background-position: 0%;
-		border: none;
-		border-radius: 4px;
-	}
-	button:hover {
-		background-position: 10%;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.news-form {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.news-form code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.news-form strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-		margin: 0;
-	}
+main {
+  margin: auto;
+  padding: 1.5rem;
+  max-width: 60ch;
+}
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+}
+hr, p {
+  margin: 5px 0;
+}
+label {
+  font-size: 0.875rem;
+  font-style: italic;
+}
+input {
+  width: 100%;
+  padding: 5px;
+  margin: 0 0 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+button {
+  cursor: pointer;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  background-image: var(--accent-gradient);
+  background-size: 400%;
+  background-position: 0%;
+  border: none;
+  border-radius: 4px;
+}
+button:hover {
+  background-position: 10%;
+}
+.text-gradient {
+  background-image: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400%;
+  background-position: 0%;
+}
+.news-form {
+  line-height: 1.6;
+  margin: 1rem 0;
+  border: 1px solid rgba(var(--accent), 25%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+.news-form code {
+  font-size: 0.875em;
+  font-weight: bold;
+  background: rgba(var(--accent), 12%);
+  color: rgb(var(--accent));
+  border-radius: 4px;
+  padding: 0.3em 0.45em;
+}
+.news-form strong {
+  color: rgb(var(--accent));
+}
+.link-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
 </style>

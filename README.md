@@ -1,7 +1,8 @@
-# 🚀 Astro + 🦕 Deno Template
+# 🚀 Astro 2.x + 🦕 Deno Template
 
 This sample project contains a recommended starting point for your Deno project
-using Astro.
+using Astro 2. For an Astro 3 compatible template, check
+[here](https://github.com/denoland/deno-astro-template) instead.
 
 ## 🛠️ Using this template
 

@@ -10,7 +10,6 @@
     "format": "deno fmt && prettier --write ."
   },
   "dependencies": {
-    "@astrojs/deno": "^5.0.1",
     "@deno/astro-adapter": "^0.1.2",
     "astro": "^4.9.3"
   },

@@ -3,11 +3,10 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "deno run -A --unstable npm:astro dev",
-    "start": "deno run -A --unstable npm:astro dev",
+    "dev": "astro dev",
+    "start": "astro dev",
     "build": "astro build",
-    "preview": "deno run -A --unstable ./dist/server/entry.mjs",
-    "astro": "astro",
+    "preview": "deno run -A ./dist/server/entry.mjs",
     "format": "deno fmt && prettier --write ."
   },
   "dependencies": {
